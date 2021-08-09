@@ -1,28 +1,21 @@
-class Solution(object):
-    def countAndSay(self, n):
-        """
-        :type n: int
-        :rtype: str
-        """
-        return ''.join(self.nextSequence(n, ['1', 'E']))
-
-    def nextSequence(self, n, prevSeq):
+class Solution:
+    def countAndSay(self, n: int) -> str:
         if n == 1:
-            return prevSeq[:-1]
-
-        nextSeq = []
-        prevDigit = prevSeq[0]
-        digitCnt = 1
-        for digit in prevSeq[1:]:
-            if digit == prevDigit:
-                digitCnt += 1
-            else:
-                # the end of a sub-sequence
-                nextSeq.extend([str(digitCnt), prevDigit])
-                prevDigit = digit
-                digitCnt = 1
-
-        # add a delimiter for the next sequence
-        nextSeq.append('E')
-
-        return self.nextSequence(n-1, nextSeq)
+            return "1"
+        return self.recursive(self.countAndSay(n - 1))
+    
+    def recursive(self, num: str):
+        res = ""
+        current = num[0]
+        count = 1
+        temp = f'{count}{current}'
+        if len(num) == 1:
+            return temp
+        for c in num[1:]:
+            if c != current:
+                res = f'{res}{temp}'
+                current = c
+                count = 0
+            count += 1
+            temp = f'{count}{current}'
+        return f'{res}{temp}'
