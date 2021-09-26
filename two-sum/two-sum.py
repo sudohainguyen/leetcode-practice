@@ -6,4 +6,3 @@ class Solution:
                 return [store[e], i]
             tmp = target - e
             store[tmp] = i
-            
