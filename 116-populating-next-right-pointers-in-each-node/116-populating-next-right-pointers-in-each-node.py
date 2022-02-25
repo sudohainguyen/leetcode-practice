@@ -19,6 +19,7 @@ class Solution:
             prev = None
             while n_o_nodes_cur_level > 0:
                 node = queue.pop(0)
+
                 if node.left:
                     queue.append(node.left)
                 if node.right:
@@ -27,6 +28,7 @@ class Solution:
                 if prev != None:
                     prev.next = node
                 prev = node
+
                 n_o_nodes_cur_level -= 1
             prev.next = None
         return root
