@@ -3,8 +3,10 @@ class Solution:
         """
         Do not return anything, modify s in-place instead.
         """
-        n = len(s) - 1
         i = 0
-        while i < (n + 1) // 2:
-            s[i], s[n - i] = s[n - i], s[i]
+        j = len(s) - 1
+        while i < j:
+            s[i], s[j] = s[j], s[i]
             i += 1
+            j -= 1
+        
