@@ -7,17 +7,18 @@ class Solution:
         _t = []
         while i < max(len_s, len_t):
             if i < len_s:
-                if s[i] == '#':
-                    if _s:
-                        _s.pop()
-                else:
+                if s[i] != '#':
                     _s.append(s[i])
+                elif _s:
+                    _s.pop()
             if i < len_t:
-                if t[i] == '#':
-                    if _t:
-                        _t.pop()
-                else:
+                if t[i] != '#':
                     _t.append(t[i])
+                elif _t:
+                    _t.pop()
             i += 1
-        return ''.join(_s) == ''.join(_t)
+        while _s and _t:
+            if _s.pop() != _t.pop():
+                return False
+        return not _s and not _t
                 
